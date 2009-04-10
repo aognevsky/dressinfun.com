@@ -18,10 +18,10 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: dressinfun_development
+  database: dressinfun.com
   pool: 5
-  username: root
-  password:
+  username: dressinfun.com
+  password: a29y6j78
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
