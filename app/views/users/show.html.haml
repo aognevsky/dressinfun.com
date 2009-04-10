@@ -3,12 +3,17 @@
     = image_tag @user.userpic.url(:comments)
   = @user.login
 
-#add-to-friends
-  - if current_user.login != @user.login
-    - if ! current_user.friends.include? (@user)
-      = link_to '+ Добавить в друзья', follow_path(@user.login)
-    - else
-      = link_to '– Удалить из друзей', unfollow_path(@user.login)
+- if logged_in?
+  #add-to-friends
+    - if current_user.login != @user.login
+      - if ! current_user.friends.include? (@user)
+        = link_to '+ Добавить в друзья', follow_path(@user.login)
+      - else
+        = link_to '– Удалить из друзей', unfollow_path(@user.login)
+      
+- if logged_in?
+  %p
+    = link_to 'Написать личное сообщение', new_message_path (@user.login)
     
 
 - if ! @user.name.empty?
