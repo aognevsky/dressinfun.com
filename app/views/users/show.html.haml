@@ -32,7 +32,31 @@
   - if ! @user.icq.empty?
     icq: 
     = @user.icq
-  
+
+%p
+  - if ! @user.skype.empty?
+    skype: 
+    = @user.skype
+
+%p
+  - if ! @user.jabber.empty?
+    jabber: 
+    = @user.jabber
+    
+%p
+  - if ! @user.gtalk.empty?
+    gtalk: 
+    = @user.gtalk
+
+%p
+  - if ! @user.jabber.empty?
+    jabber: 
+    = @user.jabber
+
+%p
+  - if ! @user.gtalk.empty?
+    gtalk: 
+    = @user.gtalk
 
 - if ! @user.birthday.nil?
   %p
