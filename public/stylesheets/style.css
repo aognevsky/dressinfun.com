@@ -1,0 +1,77 @@
+body {
+	color: #333;
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+	font-size: 14px;
+}
+
+a {
+	color: #1a00ff;
+	text-decoration: none;
+	
+}
+
+#add-to-friends a {
+	padding: 3px;
+
+}
+
+a:hover {
+	text-decoration: none;
+	background-color: #1a00ff;
+	color: #fff;
+}
+
+textarea {
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+	font-size: 14px;
+}
+
+.notice {
+	color: #333;
+	font-size: 120%;
+
+	margin: 10px;
+	padding: 10px;
+	
+	background-color: #bcffcb;
+	
+	width: 640px;
+	border: 1px dotted #97d797;
+	display: inline;
+
+}
+
+.error {
+	color: #333;
+	font-size: 120%;
+
+	margin: 5px;
+	padding: 10px;
+	
+	background-color: #ffcbcb;
+	
+	width: 640px;
+	border: 1px dotted #d79797;
+	display: inline;
+}
+
+#user-bar {
+	position: absolute;
+	
+	top: 5px;
+	right: 5px;
+	
+	padding: 5px;
+}
+
+#nav-bar {
+	font-size: 140%;
+	position: absolute;
+	top: 5px;
+	left: 45%;
+	
+	padding: 5px;
+	
+	background-color: #feffca;
+}
+

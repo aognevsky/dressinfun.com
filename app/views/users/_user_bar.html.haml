@@ -1,0 +1,21 @@
+- if logged_in?
+  #user-bar
+    %b= current_user.login
+    = link_to 'Мой профиль', user_path(current_user.login)
+    = "/"
+    = link_to 'Настройки', settings_path
+    = "/"
+    = link_to 'Выйти', logout_path
+
+
+- else
+  #user-bar
+    = link_to 'Войти', login_path
+    = "/"
+    = link_to 'Регистрация', signup_path
+    
+    
+#nav-bar
+  = link_to 'Главная', :root
+  = "/"
+  = link_to 'Пользователи', users_path

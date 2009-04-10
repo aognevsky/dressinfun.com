@@ -1,0 +1,6 @@
+%h1 user list
+
+%ol
+  - for user in @users do
+    %li
+      = link_to user.login, user_path(user.login)

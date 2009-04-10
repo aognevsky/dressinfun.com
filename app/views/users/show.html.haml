@@ -1,0 +1,54 @@
+%h1
+  - if @user.userpic.exists?
+    = image_tag @user.userpic.url(:comments)
+  = @user.login
+
+#add-to-friends
+  - if current_user.login != @user.login
+    - if ! current_user.friends.include? (@user)
+      = link_to '+ Добавить в друзья', follow_path(@user.login)
+    - else
+      = link_to '– Удалить из друзей', unfollow_path(@user.login)
+    
+
+- if ! @user.name.empty?
+  %p
+    Имя:
+    = @user.name
+    
+    
+- if ! @user.about.empty?
+  %p
+    Обо мне:
+    %br
+    = @user.about
+
+%p
+  - if ! @user.icq.empty?
+    icq: 
+    = @user.icq
+  
+
+- if ! @user.birthday.nil?
+  %p
+    Age:
+    = ((Time.now.to_date - @user.birthday) / 365).to_i
+    %br
+    = @user.birthday.strftime('%d %B %Y')
+    
+%p
+  Is registered for 
+  = time_ago_in_words(@user.created_at)
+  
+- if ! @user.friends.empty?
+  %p
+    Друзья:
+    - for friend in @user.friends do
+      = link_to friend.login, user_path(friend.login)
+
+
+- if ! @user.fans.empty?
+  %p
+    В друзьях у:
+    - for fan in @user.fans do
+      = link_to fan.login, user_path(fan.login)

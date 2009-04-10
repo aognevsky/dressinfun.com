@@ -1,0 +1,62 @@
+%h1= @user.login
+
+- form_for @user do |f|
+  = f.error_messages
+    
+  %p
+    = f.label 'name'
+    %br
+    = f.text_field :name
+    
+  %p
+    = f.label 'birthday'
+    %br
+    / TODO Добавить сортировку года по убыванию
+    = f.date_select :birthday, :order => [:day, :month, :year], :start_year => 1935, :end_year => 2000, :prompt => { :day => '...', :month => '...', :year => '...' }
+    
+    %br 
+    = @user.birthday
+    
+  %p
+    = f.label 'icq'
+    %br
+    = f.text_field :icq
+  
+  
+  %p
+    = f.label 'skype'
+    %br
+    = f.text_field :skype
+    
+  %p
+    = f.label 'jabber'
+    %br
+    = f.text_field :jabber
+      
+  %p
+    = f.label 'gtalk'
+    %br
+    = f.text_field :gtalk
+  
+  %p
+    = f.label 'about'
+    %br
+    = f.text_area :about, :cols => 48, :rows => 6
+  
+  %p
+    = submit_tag 'Save'
+
+  
+- form_for @user, :html => { :multipart => true} do |f|
+  = f.error_messages
+  
+  %p
+    = image_tag @user.userpic.url
+    
+  %p
+    = f.label 'userpic'
+    %br
+    = f.file_field :userpic
+
+    %p
+    = submit_tag 'Save userpic'

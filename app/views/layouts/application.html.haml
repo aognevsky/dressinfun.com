@@ -1,0 +1,18 @@
+!!! Strict
+%html{html_attrs}
+
+  %head
+    = stylesheet_link_tag :all, :cache => true
+    /= javascript_include_tag :all, :cache => true
+    %title 
+      Dressinfun.com — 
+  %body
+    - if flash[:notice]
+      %p.notice= flash[:notice] 
+    
+    - if flash[:error]
+      %p.error= flash[:error]
+  
+    = render :partial => 'users/user_bar'
+
+    = yield

@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090409232018) do
+ActiveRecord::Schema.define(:version => 20090409234007) do
+
+  create_table "friendships", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string "name"
@@ -33,6 +40,20 @@ ActiveRecord::Schema.define(:version => 20090409232018) do
     t.datetime "updated_at"
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
+    t.string   "userpic_file_name"
+    t.string   "userpic_content_type"
+    t.integer  "userpic_file_size"
+    t.datetime "userpic_updated_at"
+    t.string   "icq",                                      :default => ""
+    t.string   "skype",                                    :default => ""
+    t.string   "jabber",                                   :default => ""
+    t.string   "gtalk",                                    :default => ""
+    t.string   "twitter",                                  :default => ""
+    t.string   "website",                                  :default => ""
+    t.date     "birthday"
+    t.text     "about",                                                      :null => false
+    t.string   "location",                                 :default => ""
+    t.boolean  "sex",                                      :default => true
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

@@ -1,13 +1,51 @@
 class UsersController < ApplicationController
-  # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
-  
+	# Cut out all non-logged-in queries to Edit and Update pages
+	before_filter :login_required, :only => [:edit, :update]
+	
+	# Users list at /users
+	def index
+		@users = User.find(:all)
+	end
+	
+	# User profile at /users/:login
+	def show
+		# No such user
+		if ! @user = User.find_by_login(params[:id])
+			flash[:error] = "Извините, пользователь «<strong>#{params[:id]}</strong>» не найден."
+			redirect_to users_path
+		else
+			# Show this user
+			@friendship = Friendship.new
+		end			
+	end
+	
 
-  # render new.rhtml
+	# User sign up at /signup
   def new
     @user = User.new
   end
+
+	
+	# User profile
+	def edit
+		@user = User.find(current_user)
+	end
+	
+	
+	def update
+		@user = User.find_by_login(current_user.login)
+		
+		if @user.update_attributes(params[:user])
+		    	flash[:notice] = 'Ваш профиль был успешно обновлен.'
+			    redirect_to(settings_path)
+			
+			  else
+			flash[:error] = "Обновить профиль не удалось. Видимо, что-то случилось."
+			  	render :action => "edit" 
+			  end		
+	end
  
+
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
@@ -19,9 +57,9 @@ class UsersController < ApplicationController
       # reset session
       self.current_user = @user # !! now logged in
       redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      flash[:notice] = "Спасибо за регистрацию! Мы отправили Вам письмо с кодом активации."
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = "Регистрация не удалась. Видимо, что-то случилось."
       render :action => 'new'
     end
   end
