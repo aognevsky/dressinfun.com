@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
 						:source => :friend
 
 
+	has_private_messages
+
+
 #
 # Userpics
 #
