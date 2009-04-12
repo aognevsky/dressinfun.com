@@ -3,6 +3,13 @@
     %b= current_user.login
     = link_to 'Мой профиль', user_path(current_user.login)
     = "/"
+    
+    - if current_user.unread_messages?
+      = link_to "Сообщения (#{current_user.unread_message_count})", messages_path
+    - else
+      = link_to "Сообщения", messages_path
+    
+    = "/"    
     = link_to 'Настройки', settings_path
     = "/"
     = link_to 'Выйти', logout_path

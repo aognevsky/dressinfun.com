@@ -74,6 +74,19 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
+	# User info
+	validates_length_of	:icq, :within => 5..10
+	validates_numericality_of :icq
+	
+	validates_length_of :jabber, :within => 6..100 #r@a.wk
+  validates_format_of :jabber, :with => Authentication.email_regex, :message => Authentication.bad_email_message
+	
+	validates_format_of :skype, :with => /^[A-Za-z.]*\z/, :message => "Херовый скайп!"
+	# TODO закончить валидацию для всех полей.
+	
+	
+	# icq, jabber, skype, gtalk, website, twitter, about, location, sex
+
 	# Userpic
 	#validates_attachment_presence :userpic // This shit kills 
 

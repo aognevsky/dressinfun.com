@@ -1,0 +1,27 @@
+%h1 Входящие
+- if ! current_user.received_messages.empty?
+  - for message in current_user.received_messages do
+    %p
+      %i= "От #{link_to message.sender.login, user_path(message.sender.login)} для меня"
+      %br
+      = link_to message.subject, message_path (message.id)
+      %br
+          
+- else 
+  %p
+    У вас нет ни одного входящего сообщения.
+
+
+%h1 Исходящие
+
+- if ! current_user.sent_messages.empty?
+  - for message in current_user.sent_messages do
+    %p
+      %i= "От меня для #{link_to message.recipient.login, user_path(message.recipient.login)}"
+      %br
+      = link_to message.subject, message_path (message.id)
+      %br
+    
+- else 
+  %p
+    У вас нет ни одного входящего сообщения.
