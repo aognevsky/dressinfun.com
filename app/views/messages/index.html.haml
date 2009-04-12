@@ -5,6 +5,8 @@
       %i= "От #{link_to message.sender.login, user_path(message.sender.login)} для меня"
       %br
       = link_to message.subject, message_path (message.id)
+      - if ! message.read?
+        ¶новое
       %br
           
 - else 
@@ -20,6 +22,8 @@
       %i= "От меня для #{link_to message.recipient.login, user_path(message.recipient.login)}"
       %br
       = link_to message.subject, message_path (message.id)
+      - if ! message.read?
+        ¶новое
       %br
     
 - else 
